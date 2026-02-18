@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: treeplazzma-backend
+  labels:
+    app: treeplazzma
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: treeplazzma
+  template:
+    metadata:
+      labels:
+        app: treeplazzma
+    spec:
+      containers:
+      - name: treeplazzma-backend
+        image: treeplazzma/backend:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URL
+          value: "your_database_url_here"
+        - name: ENVIRONMENT
+          value: "production"
